@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FC } from 'react';
 import cn from 'classnames';
 import { Person } from '../../types';
@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const PeopleTable: FC<Props> = ({ people }) => {
-  const { pathname } = useLocation();
+  const { slug: paramsSlug } = useParams();
 
   return (
     <table
@@ -38,7 +38,7 @@ export const PeopleTable: FC<Props> = ({ people }) => {
               key={slug}
               data-cy="person"
               className={cn({
-                'has-background-warning': pathname.includes(slug),
+                'has-background-warning': paramsSlug === slug,
               })}
             >
               <td>
